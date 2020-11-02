@@ -1,19 +1,19 @@
 {
-  "short_name": "coinDEXter",
-  "name": "coinDEXter Portfolio Manager",
+  "short_name": "coinStack",
+  "name": "coinStack Portfolio Manager",
   "icons": [
     {
-      "src": "tlvectorsm.svg",
+      "src": "favicon.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "tlvectorsm.svg",
+      "src": "favicon.svg",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "tlvectorsm.svg",
+      "src": "favicon.svg",
       "type": "image/png",
       "sizes": "512x512"
     }
