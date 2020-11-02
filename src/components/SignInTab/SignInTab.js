@@ -21,8 +21,8 @@ function SignInTab(props) {
     const actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.
-      // url: "http://coinstack.money/home",
-      url: "http://localhost:3000/",
+      url: "http://coinstack.money/home",
+      // url: "http://localhost:3000/",
       // This must be true.
       handleCodeInApp: true,
     };
