@@ -4,7 +4,7 @@ import { FIREBASE_CONFIG } from "../../firebase";
 
 import NavBar from "../common/NavBar";
 import Footer from "../common/Footer";
-import homepageImg from "../../assets/coinStack4x3.png";
+import homepageImg from "../../images/coinStack4x3.png";
 
 function SignInTab(props) {
   const [textInput, setTextInput] = useState("");

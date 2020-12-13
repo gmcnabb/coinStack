@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import firebase, { FIREBASE_CONFIG } from "../firebase";
 import { BrowserRouter, Route } from "react-router-dom";
 
-import HomeTab from "./PortfolioTab/PortfolioTab";
-import SignInTab from "./SignInTab/SignInTab";
-import MarketsTab from "./MarketsTab/MarketsTab";
-import AddCoinTab from "./AddCoinTab/AddCoinTab";
-import CoinDetailTab from "./CoinDetailTab/CoinDetailTab";
-import AddTransactionTab from "./EditTransactionTab/EditTransactionTab";
-import Trends from "./TrendsTab/TrendsTab";
+import HomeTab from "../components/PortfolioTab/PortfolioTab";
+import SignInTab from "../components/SignInTab/SignInTab";
+import MarketsTab from "../components/MarketsTab/MarketsTab";
+import AddCoinTab from "../components/AddCoinTab/AddCoinTab";
+import CoinDetailTab from "../components/CoinDetailTab/CoinDetailTab";
+import AddTransactionTab from "../components/EditTransactionTab/EditTransactionTab";
+import Trends from "../components/TrendsTab/TrendsTab";
 import masterCoinObj from "../masterCoinList";
 
 const COINGECKO_MARKET_GET =

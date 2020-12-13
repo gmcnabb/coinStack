@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import firebase from "../../firebase";
 
 import { Link } from "react-router-dom";
-import logo from "../../assets/coinStackLogo.svg";
+import logo from "../../images/coinStackLogo.svg";
 
 function NavBar(props) {
   const runSetup = () => {
