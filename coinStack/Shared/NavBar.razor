@@ -1,0 +1,61 @@
+﻿<div class="container is-max-desktop">
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="background: transparent">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://localhost:5001">
+                    <img src="img/coinStackLogo.svg" width="180">
+                </a>
+
+                <a role="button" class="@burgerActive" aria-label="menu" aria-expanded="false"
+                   data-target="navbarLinks" @onclick="Toggler">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarLinks" class="@navbarActive" style="background: transparent">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/portfolio" style="background: transparent">
+                        <strong>Portfolio</strong>
+                    </a>
+                    <a class="navbar-item" href="/addcoin" style="background: transparent">
+                        <strong>Add Coin</strong>
+                    </a>
+                    <a class="navbar-item" href="/markets" style="background: transparent">
+                        <strong>Markets</strong>
+                    </a>
+                    <a class="navbar-item" href="/trends" style="background: transparent">
+                        <strong>Trends</strong>
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary is-outlined" href="/">
+                                <strong>Log In</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <hr style="border: 1px solid rgb(32, 156, 238); margin: 0px;">
+</div>
+
+
+@code {
+    private bool collapseNavbar = true;
+
+    private string burgerActive => collapseNavbar ? "navbar-burger burger is-primary" : "navbar-burger burger is-active is-primary";
+    private string navbarActive => collapseNavbar ? "navbar-menu is-shadowless" : "navbar-menu is-shadowless is-active";
+
+    // toggle navbar dropdown
+    public void Toggler()
+    {
+        collapseNavbar = !collapseNavbar;
+    }
+
+}
