@@ -618,7 +618,6 @@ C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\build-g
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\build-gz\Isi5+0Gg.gz
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\build-gz\ixnzv++D.gz
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\build-gz\Mz7BDm+L.gz
-C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\build-gz\F8p9vq5F.gz
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\staticwebassets\coinStack.StaticWebAssets.Manifest.cache
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\staticwebassets\coinStack.StaticWebAssets.xml
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
@@ -630,3 +629,17 @@ C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\coinSta
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\coinStack.dll
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\ref\coinStack.dll
 C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\coinStack.pdb
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\bin\Debug\net5.0\compilerconfig.json
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\RazorDeclaration\Pages\AddCoin.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\RazorDeclaration\Pages\Markets.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\RazorDeclaration\Pages\Portfolio.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\RazorDeclaration\Pages\Trends.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\RazorDeclaration\Shared\IndexLayout.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\RazorDeclaration\Shared\NavBar.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\Razor\Pages\AddCoin.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\Razor\Pages\Markets.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\Razor\Pages\Portfolio.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\Razor\Pages\Trends.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\Razor\Shared\IndexLayout.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\Razor\Shared\NavBar.razor.g.cs
+C:\Users\James\Documents\Dev\dotnet\coinStack\coinstack\obj\Debug\net5.0\build-gz\F8p9vq5F.gz

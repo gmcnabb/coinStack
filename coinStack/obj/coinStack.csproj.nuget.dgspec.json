@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinstack\\coinStack.csproj": {}
+    "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinStack\\coinStack.csproj": {}
   },
   "projects": {
-    "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinstack\\coinStack.csproj": {
+    "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinStack\\coinStack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinstack\\coinStack.csproj",
+        "projectUniqueName": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinStack\\coinStack.csproj",
         "projectName": "coinStack",
-        "projectPath": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinstack\\coinStack.csproj",
+        "projectPath": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinStack\\coinStack.csproj",
         "packagesPath": "C:\\Users\\James\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinstack\\obj\\",
+        "outputPath": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinStack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\James\\AppData\\Roaming\\NuGet\\NuGet.Config",

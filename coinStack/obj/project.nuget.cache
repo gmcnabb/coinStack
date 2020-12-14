@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7TtU8CAaRZp5UMFLuvjbYy7xG/pS2cPnlthF5NLoKzQLIuQuEYhFd0ySr2FwrlAr+eN5s6oqUBcVyQjFnTa3vA==",
+  "dgSpecHash": "rpLhySdr13xGkWp6hBRK6BwSp9K6HW8tqjnth7xqFA/C2ctJYmTIJkKQ+rKottaTqhi2UXaIQl4MaZMTjSQ1ig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinstack\\coinStack.csproj",
+  "projectFilePath": "C:\\Users\\James\\Documents\\Dev\\dotnet\\coinStack\\coinStack\\coinStack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\James\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.1\\microsoft.aspnetcore.authorization.5.0.1.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.1\\microsoft.aspnetcore.components.5.0.1.nupkg.sha512",
