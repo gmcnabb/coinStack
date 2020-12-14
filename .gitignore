@@ -1,7 +1,7 @@
 */.vs/**
 */wwwroot/css/MyStyles.css
 */wwwroot/css/MyStyles.min.css
-*/bulma/**
+*/wwwroot/css/bulma/**
 */bin/Debug/**
 */obj/**
 
