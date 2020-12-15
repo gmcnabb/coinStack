@@ -37,7 +37,7 @@ namespace coinStackAPI
             //return new OkObjectResult(responseMessage);
 
             ClaimsPrincipal UserClaims = StaticWebAppsAuth.Parse(req);
-            string responseMessage = UserClaims.Identity.ToString();
+            string responseMessage = UserClaims.Identity.Name;
 
             return new OkObjectResult(responseMessage);
         }
