@@ -18,6 +18,8 @@ jobs:
       - name: Checkout source Git branch
         uses: actions/checkout@v2
         with:
+          ref: azure-workflow
+          fetch-depth: 10
           submodules: true
 
       - name: Make destination directory for compiled CSS
@@ -28,6 +30,12 @@ jobs:
         with:
           source: coinStack/Styles/GHMyStyles.scss
           destination: /tmp/coinStack/coinStack/wwwroot/css/MyStyles.css
+
+      - name: Checkout destination Git branch
+        uses: actions/checkout@v2
+        with:
+          ref: azure
+          fetch-depth: 1
 
       - name: Move compiled CSS to path within azure branch
         run: |
@@ -41,6 +49,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: azure
+
+      - name: Checkout source Git branch
+        uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Build And Deploy
         id: builddeploy
