@@ -31,16 +31,16 @@ namespace coinStackAPI
 
             //return new OkObjectResult(responseMessage);
 
-            string responseMessage = "successful API test";
+            string responseMessage = "successful API auth test";
             return new OkObjectResult(responseMessage);
         }
 
-        [FunctionName("Restricted")]
-        public static async Task<IActionResult> Restricted(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "authed")] HttpRequest req, ILogger log)
-        {
-            string responseMessage = "you an MVP";
-            return new OkObjectResult(responseMessage);
-        }
+        //[FunctionName("Restricted")]
+        //public static async Task<IActionResult> Restricted(
+        //    [HttpTrigger(AuthorizationLevel.Function, "get", Route = "authed")] HttpRequest req, ILogger log)
+        //{
+        //    string responseMessage = "you an MVP";
+        //    return new OkObjectResult(responseMessage);
+        //}
     }
 }
