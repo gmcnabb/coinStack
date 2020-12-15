@@ -2,9 +2,10 @@
   {
     "outputFile": "wwwroot/css/MyStyles.css",
     "inputFile": "Styles/MyStyles.scss"
-  },
-  {
-    "outputFile": "wwwroot/css/bulma/bulma.css",
-    "inputFile": "wwwroot/css/bulma/bulma.sass"
   }
+  //,
+  //{
+  //  "outputFile": "wwwroot/css/bulma/bulma.css",
+  //  "inputFile": "wwwroot/css/bulma/bulma.sass"
+  //}
 ]

@@ -15,6 +15,51 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
+      - name: Checkout source Git branch
+        uses: actions/checkout@v2
+        with:
+          ref: src-pages
+          fetch-depth: 10
+          submodules: true
+
+      - name: Make destination directory for compiled CSS
+        run: mkdir -vp /tmp/coinStack/coinStack/wwwroot/css/
+
+      - name: Compile CSS from SCSS files
+        uses: gha-utilities/sass-build@v0.3.1
+        with:
+          source: coinStack/Styles/MyStyles.scss
+          destination: /tmp/coinStack/coinStack/wwwroot/css/
+
+      - name: Checkout destination Git branch
+        uses: actions/checkout@v2
+        with:
+          ref: pr-pages
+          fetch-depth: 1
+
+      - name: Move compiled CSS to path within pr-pages branch
+        run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'GitHub Action'
+          git add assets/css/*
+          git commit -m 'Updates compiled CSS files'
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: pr-pages
+
+      - name: Initialize Pull pull_request
+        uses: gha-utilities/init-pull-request@0.0.4
+        with:
+          pull_request_token: $ {{ secrets.GITHUB_TOKEN }}
+          head: pr-pages
+          base: gh-pages
+          title: 'Updates site files from latest Actions build'
+          body: >
+            insert description of latest features here
+            
       - uses: actions/checkout@v2
         with:
           submodules: true
