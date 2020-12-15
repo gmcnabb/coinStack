@@ -20,12 +20,28 @@ jobs:
         with:
           submodules: true
 
+      - name: Make destination directory for compiled CSS
+        run: mkdir -vp /tmp/coinStack/coinStack/wwwroot/css/
+
       - name: Compile CSS from SCSS files
         uses: gha-utilities/sass-build@v0.3.1
         with:
           source: coinStack/Styles/GHMyStyles.scss
-          destination: coinStack/wwwroot/css/MyStyles.css
+          destination: /tmp/coinStack/coinStack/wwwroot/css/MyStyles.css
 
+      - name: Move compiled CSS to path within azure branch
+        run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'GitHub Action'
+          git add wwwroot/css/MyStyles.css
+          git commit -m 'Updates compiled CSS files'
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: azure
+      
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
