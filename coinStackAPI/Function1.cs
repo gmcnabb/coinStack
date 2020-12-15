@@ -42,6 +42,32 @@ namespace coinStackAPI
             return new OkObjectResult(responseMessage);
         }
 
+        [FunctionName("ReadFromDB")]
+        public static async Task<IActionResult> Read(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "read/{partitionKey}/{entry}")]
+            HttpRequest req, ILogger log, [CosmosDB(
+                                            databaseName: "coinstackdb1",
+                                            collectionName: "portfolios",
+                                            ConnectionStringSetting = "dbReadConnection",
+                                            Id = "{entry}",
+                                            PartitionKey = "{partitionKey}")] PortfolioEntry valueOne)
+        {
+            log.LogInformation("attempting read from DB");
+
+            if (valueOne == null)
+            {
+                log.LogInformation("not found");
+            }
+            else
+            {
+                log.LogInformation($"found item, description: {valueOne.Value}")
+            }
+
+            string responseMessage = valueOne.Value ?? "fail";
+            return new OkObjectResult(responseMessage);
+
+        }
+
         //[FunctionName("Restricted")]
         //public static async Task<IActionResult> Restricted(
         //    [HttpTrigger(AuthorizationLevel.Function, "get", Route = "authed")] HttpRequest req, ILogger log)
@@ -49,6 +75,11 @@ namespace coinStackAPI
         //    string responseMessage = "you an MVP";
         //    return new OkObjectResult(responseMessage);
         //}
+
+        public class PortfolioEntry
+        {
+            public string Value { get; set; }
+        }
 
         public static class StaticWebAppsAuth
         {
