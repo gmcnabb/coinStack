@@ -97,6 +97,5 @@
     protected override async Task OnInitializedAsync()
     {
         response = await Http.GetFromJsonAsync<TrendResponse>(COINGECKO_TRENDS);
-        Console.WriteLine(response.coins[0].item.name);
     }
 }

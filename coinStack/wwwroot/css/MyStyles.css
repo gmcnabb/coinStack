@@ -1,4 +1,16 @@
-﻿.dropdown {
+﻿@font-face {
+  font-family: "Ubuntu Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/UbuntuMono/ubuntu-mono-latin-400.woff) format("woff"); }
+
+@font-face {
+  font-family: "Sahitya";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/Sahitya/Sahitya-Regular.ttf) format("truetype"); }
+
+.dropdown {
   width: 90%; }
 
 .dropdown-trigger {
@@ -5509,15 +5521,3 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 @media screen and (min-width: 1408px) {
   .is-invisible-fullhd {
     visibility: hidden !important; } }
-
-@font-face {
-  font-family: "Ubuntu Mono";
-  font-style: normal;
-  font-weight: 400;
-  src: url(../font/UbuntuMono/ubuntu-mono-latin-400.woff) format("woff"); }
-
-@font-face {
-  font-family: "Sahitya";
-  font-style: normal;
-  font-weight: 400;
-  src: url(../font/Sahitya/Sahitya-Regular.ttf) format("truetype"); }
