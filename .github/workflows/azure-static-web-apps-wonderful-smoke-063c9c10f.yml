@@ -33,7 +33,7 @@ jobs:
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add wwwroot/css/MyStyles.css
+          git add */wwwroot/css/MyStyles.css
           git commit -m 'Updates compiled CSS files'
 
       - name: Push changes
@@ -41,7 +41,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: azure
-      
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
