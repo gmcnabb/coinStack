@@ -51,7 +51,7 @@ jobs:
           branch: pr-pages
 
       - name: Initialize Pull pull_request
-        uses: gha-utilities/init-pull-request@0.0.4
+        uses: gha-utilities/init-pull-request@v0.0.4
         with:
           pull_request_token: $ {{ secrets.GITHUB_TOKEN }}
           head: pr-pages
@@ -59,7 +59,7 @@ jobs:
           title: 'Updates site files from latest Actions build'
           body: >
             insert description of latest features here
-            
+
       - uses: actions/checkout@v2
         with:
           submodules: true
