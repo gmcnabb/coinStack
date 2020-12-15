@@ -15,43 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - name: Checkout source Git branch
-        uses: actions/checkout@v2
-        with:
-          ref: azure-workflow
-          fetch-depth: 10
-          submodules: true
-
-      - name: Make destination directory for compiled CSS
-        run: mkdir -vp /tmp/coinStack/coinStack/wwwroot/css/
-
-      - name: Compile CSS from SCSS files
-        uses: gha-utilities/sass-build@v0.3.1
-        with:
-          source: coinStack/Styles/GHMyStyles.scss
-          destination: /tmp/coinStack/coinStack/wwwroot/css/MyStyles.css
-
-      - name: Checkout destination Git branch
-        uses: actions/checkout@v2
-        with:
-          ref: azure
-          fetch-depth: 1
-
-      - name: Move compiled CSS to path within azure branch
-        run: mv /tmp/coinStack/coinStack/wwwroot/css/ coinStack/wwwroot/css/
-
-      - name: Add and Commit changes to destination branch
-        run: |
-          git config --local user.email 'action@github.com'
-          git config --local user.name 'GitHub Action'
-          git add /coinStack/wwwroot/css/*
-          git commit -m 'Updates compiled CSS files'
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: azure
 
       - name: Checkout source Git branch
         uses: actions/checkout@v2
