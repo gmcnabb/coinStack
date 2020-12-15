@@ -31,7 +31,8 @@ namespace coinStackAPI
 
             //return new OkObjectResult(responseMessage);
 
-            string responseMessage = "successful API auth test";
+            //string responseMessage = "successful API auth test";
+            string responseMessage = req.Headers.ToString();
             return new OkObjectResult(responseMessage);
         }
 
