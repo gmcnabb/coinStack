@@ -43,14 +43,14 @@ namespace coinStackAPI
         }
 
         [FunctionName("ReadFromDB")]
-        public static async Task<IActionResult> Read(
+        public static IActionResult Read(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "read/{partitionKey}/{entry}")]
-            HttpRequest req, ILogger log, [CosmosDB(
-                                            databaseName: "coinstackdb1",
-                                            collectionName: "portfolios",
-                                            ConnectionStringSetting = "dbReadConnection",
-                                            Id = "{entry}",
-                                            PartitionKey = "{partitionKey}")] PortfolioEntry valueOne)
+            HttpRequest req, [CosmosDB(
+                                databaseName: "coinstackdb1",
+                                collectionName: "portfolios",
+                                ConnectionStringSetting = "DB_READ_CONNECTION",
+                                Id = "{entry}",
+                                PartitionKey = "{partitionKey}")] PortfolioEntry valueOne, ILogger log)
         {
             log.LogInformation("attempting read from DB");
 
