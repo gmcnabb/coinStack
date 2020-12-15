@@ -1,12 +1,6 @@
 */.vs/**
-*/wwwroot/css/bulma/CHANGELOG.md
-*/wwwroot/css/bulma/LICENSE
-*/wwwroot/css/bulma/README.md
-*/wwwroot/css/bulma/bulma.css
-*/wwwroot/css/bulma/bulma.min.css
-*/wwwroot/css/bulma/bulma.sass
-*/wwwroot/css/bulma/css
-*/wwwroot/css/bulma/package.json
+*/wwwroot/css/bulma/**
+*/Styles/**
 */bin/Debug/**
 */obj/**
 
