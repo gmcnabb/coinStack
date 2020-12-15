@@ -34,5 +34,13 @@ namespace coinStackAPI
             string responseMessage = "successful API test";
             return new OkObjectResult(responseMessage);
         }
+
+        [FunctionName("Restricted")]
+        public static async Task<IActionResult> Restricted(
+            [HttpTrigger(AuthorizationLevel.User, "get", Route = "authed")] HttpRequest req, ILogger log)
+        {
+            string responseMessage = "you an MVP";
+            return new OkObjectResult(responseMessage);
+        }
     }
 }
