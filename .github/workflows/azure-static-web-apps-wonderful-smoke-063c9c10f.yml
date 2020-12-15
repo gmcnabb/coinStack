@@ -23,7 +23,7 @@ jobs:
       - name: Compile CSS from SCSS files
         uses: gha-utilities/sass-build@v0.3.1
         with:
-          source: /Styles/MyStyles.scss
+          source: coinStack/Styles/MyStyles.scss
           destination: wwwroot/css/MyStyles.css
 
       - name: Build And Deploy
