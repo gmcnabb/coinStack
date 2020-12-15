@@ -38,6 +38,9 @@ jobs:
           fetch-depth: 1
 
       - name: Move compiled CSS to path within azure branch
+        run: mv /tmp/coinStack/coinStack/wwwroot/css/
+
+      - name: Add and Commit changes to destination branch
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
