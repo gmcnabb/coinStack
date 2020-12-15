@@ -60,7 +60,7 @@ namespace coinStackAPI
             }
             else
             {
-                log.LogInformation($"found item, description: {valueOne.Value}")
+                log.LogInformation($"found item, description: {valueOne.Value}");
             }
 
             string responseMessage = valueOne.Value ?? "fail";
