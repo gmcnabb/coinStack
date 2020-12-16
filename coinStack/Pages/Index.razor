@@ -18,3 +18,11 @@
 <div class="box has-text-centered is-shadowless p-0" style="background:transparent;">
     <img src="img/coinStack4x3.png" alt="coinStack homepage" />
 </div>
+<AuthorizeView>
+    <Authorized>
+        Hey @context.User.Identity.Name!
+    </Authorized>
+    <NotAuthorized>
+        better log in, fool!
+    </NotAuthorized>
+</AuthorizeView>
