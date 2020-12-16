@@ -33,12 +33,19 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-primary is-outlined" href="/.auth/login/google">
-                                <strong>Log In</strong>
-                            </a>
-                            <a class="button is-primary is-outlined" href="/.auth/logout">
-                                <strong>Log Out</strong>
-                            </a>
+                            <AuthorizeView>
+                                <Authorized>
+                                    @context.User.Identity.Name
+                                    <a class="button is-primary is-outlined" href="/.auth/logout">
+                                        <strong>Log Out</strong>
+                                    </a>
+                                </Authorized>
+                                <NotAuthorized>
+                                    <a class="button is-primary is-outlined" href="/.auth/login/google">
+                                        <strong>Log In</strong>
+                                    </a>
+                                </NotAuthorized>
+                            </AuthorizeView>
                         </div>
                     </div>
                 </div>

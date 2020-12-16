@@ -4,25 +4,18 @@
 
 <div class="container is-max-desktop">
     <div class="has-text-centered">
-        <h2 class="title is-2 is-family-secondary has-text-white is-size-3-mobile mt-1 mb-0"
+        <h2 class="title is-2 is-family-secondary has-text-white is-size-3-mobile mt-1 mb-2"
             style="text-shadow: rgb(239,239,239) 2px 2px 5px">
             Keep track of your stack
         </h2>
     </div>
-    <div class="box has-text-centered is-shadowless is-vcentered mb-0 px-5" style="background:transparent">
-        coinStack is a live portfolio tracker for your crypto assets. <br />
-        <a href="/.auth/login/google">Log in with Google account</a><br />
-        <a href="/.auth/logout/">Log out</a><br />
+    <div class="box has-text-centered is-shadowless is-vcentered mb-0" style="background:transparent">
+        <p><h6 class="title is-6 mb-1">coinStack is a live portfolio tracker for your crypto assets.</h6></p>
+        <a href="/.auth/login/google">
+            Log in with a Google account
+        </a>
     </div>
 </div>
 <div class="box has-text-centered is-shadowless p-0" style="background:transparent;">
     <img src="img/coinStack4x3.png" alt="coinStack homepage" />
 </div>
-<AuthorizeView>
-    <Authorized>
-        Hey @context.User.Identity.Name!
-    </Authorized>
-    <NotAuthorized>
-        better log in, fool!
-    </NotAuthorized>
-</AuthorizeView>
