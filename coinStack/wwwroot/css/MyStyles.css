@@ -4119,9 +4119,9 @@ a.navbar-item,
   z-index: 20; }
 
 .dropdown-content {
-  background-color: #272727;
+  background-color: "transparent";
   border-radius: 4px;
-  box-shadow: 0 0.5em 1em -0.125em rgba(241, 241, 241, 0.1), 0 0px 0 1px rgba(241, 241, 241, 0.02);
+  box-shadow: 0px;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem; }
 
