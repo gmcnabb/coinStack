@@ -17,8 +17,8 @@
             </a>
         </p>
         <p>
-            <a href="/.auth/login/github">
-                Log in with a GitHub account
+            <a href="/.auth/login/aad">
+                Log in with a Microsoft account
             </a>
         </p>
     </div>
@@ -29,6 +29,7 @@
 <div>
     <AuthorizeView>
         <Authorized>
+
             @context.ToString();<br />
             @context.GetHashCode();<br />
             @context.User.ToString();<br />
