@@ -19,3 +19,13 @@
 <div class="box has-text-centered is-shadowless p-0" style="background:transparent;">
     <img src="img/coinStack4x3.png" alt="coinStack homepage" />
 </div>
+<div>
+    <AuthorizeView>
+        <Authorized>
+            @context.ToString();<br />
+            @context.GetHashCode();<br />
+            @context.User.ToString();<br />
+            @context.User.GetHashCode();<br />
+        </Authorized>
+    </AuthorizeView>
+</div>
