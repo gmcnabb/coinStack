@@ -20,10 +20,4 @@
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Styles\MyStyles - Copy.min.css">
-      <DependentUpon>MyStyles.min.css</DependentUpon>
-    </None>
-  </ItemGroup>
-
 </Project>

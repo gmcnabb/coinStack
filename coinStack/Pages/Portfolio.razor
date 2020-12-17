@@ -1,7 +1,32 @@
 ﻿@page "/portfolio"
 
-<h3>@Title</h3>
+<div class="container is-max-desktop">
+    <PortfolioTitle />
+    <PortfolioSummary />
+    <div class="box mt-4 mb-2 py-0 is-transparent"
+         style="border-color: #4b4b4b; border-radius: 5px; border-style: solid; border-width: 1px;">
+        <div class="columns is-gapless is-mobile">
+            <div class="column">
+                <strong>Coin</strong>
+            </div>
+            <div class="column has-text-centered">
+                <strong>Price&emsp;</strong>
+            </div>
+            <div class="column has-text-right">
+                <strong>Holdings&nbsp;</strong>
+            </div>
+        </div>
+    </div>
+    <AuthorizeView>
+        <NotAuthorized>
+            &ensp;Log in to display coins from your watchlist here!
+        </NotAuthorized>
+        <Authorized>
+            @*TODO*@
+        </Authorized>
+    </AuthorizeView>
+</div>
 
-@code {
-    public string Title { get; set; } = "Portfolio";
+@code{
+
 }
