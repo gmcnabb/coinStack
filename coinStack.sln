@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coinStack", "coinStack\coinStack.csproj", "{8C64DE47-01B1-4BF9-8F22-2FD6A75A74CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coinStackAPI", "coinStackAPI\coinStackAPI.csproj", "{1E7F42C0-A279-456B-8048-FA7768774EAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coinStackAPI", "coinStackAPI\coinStackAPI.csproj", "{1E7F42C0-A279-456B-8048-FA7768774EAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
