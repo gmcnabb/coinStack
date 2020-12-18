@@ -1,0 +1,31 @@
+﻿@using System.Net.Http
+@inject HttpClient Http
+
+<div style="height: 480px; overflow: auto">
+    <Virtualize ItemsProvider="@LoadCoins" OverscanCount="230">
+        <ItemContent>
+            <div>
+                <p>@context.name&emsp;@context.symbol;</p>
+            </div>
+        </ItemContent>
+    </Virtualize>
+</div>
+
+@code {
+    private string COINGECKO_COINS = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250";
+    int itemCount = 0;
+    int requestCount = 0;
+
+    public class Coin
+    {
+        public string symbol { get; set; }
+        public string name { get; set; }
+    }
+
+    public async ValueTask<ItemsProviderResult<Coin>> LoadCoins(ItemsProviderRequest request)
+    {
+        Console.WriteLine(request.Count);
+        return new ItemsProviderResult<Coin>
+        (await Http.GetFromJsonAsync<List<Coin>>($"{COINGECKO_COINS}&page={itemCount / 250}&sparkline=false"), 250);
+    }
+}

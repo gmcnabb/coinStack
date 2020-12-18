@@ -1,0 +1,50 @@
+﻿@using System.Net.Http
+@inject HttpClient Http
+@using Sve.Blazor.InfiniteScroll.Components
+
+<div style="height: 500px; overflow-y: auto">
+    <InfiniteScroll ObserverTargetId="observerTarget" ObservableTargetReached="async (e) => await FetchCoins()">
+        <ul>
+            @foreach (Coin c in coinList)
+            {
+                <li>
+                    <div class="columns is-gapless is-mobile mb-0">
+                        <div class="button is-info is-outlined is-rounded is-fullwidth mb-0">
+                            <div class="column has-text-centered" style="text-overflow: ellipsis; overflow-x: hidden">
+                                @c.name&emsp;@c.symbol
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+        <li id="observerTarget">Loading...</li>
+    </InfiniteScroll>
+</div>
+
+@code {
+    private string COINGECKO_COINS = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100";
+    private List<Coin> coinList = new List<Coin>();
+    private bool fetchInProgress = false;
+    private int pagesFetched = 0;
+
+    public class Coin
+    {
+        public string symbol { get; set; }
+        public string name { get; set; }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await FetchCoins();
+    }
+
+    public async Task FetchCoins()
+    {
+        int pageNum = pagesFetched;
+        pagesFetched++;
+        List<Coin> fetchedCoins = await Http.GetFromJsonAsync<List<Coin>>
+            ($"{COINGECKO_COINS}&page={pageNum}&sparkline=false");
+        coinList.AddRange(fetchedCoins);
+    }
+}
