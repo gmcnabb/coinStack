@@ -3,7 +3,7 @@
 @using Sve.Blazor.InfiniteScroll.Components
 
 <div style="height: 500px; overflow-y: auto">
-    <InfiniteScroll ObserverTargetId="observerTarget" ObservableTargetReached="async (e) => await FetchCoins()">
+    <InfiniteScroll ObserverTargetId="observerTarget" ObservableTargetReached="(e) => FetchCoins()">
         <ul>
             @foreach (Coin c in coinList)
             {
