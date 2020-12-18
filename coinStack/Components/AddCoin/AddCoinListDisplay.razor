@@ -9,7 +9,7 @@
             {
                 <li>
                     <div class="columns is-gapless is-mobile mb-0">
-                        <div class="button is-info is-outlined is-rounded is-fullwidth mb-0">
+                        <div class="button is-info is-outlined is-rounded is-fullwidth mb-0" @onclick="@AddToWatchlist">
                             <div class="column has-text-centered" style="text-overflow: ellipsis; overflow-x: hidden">
                                 @c.name&emsp;@c.symbol
                             </div>
@@ -25,7 +25,8 @@
 @code {
     private string COINGECKO_COINS = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100";
     private List<Coin> coinList = new List<Coin>();
-    private bool fetchInProgress = false;
+    private DateTime lastFetch = DateTime.Now;
+    private bool firstFetch = true;
     private int pagesFetched = 0;
 
     public class Coin
@@ -41,10 +42,22 @@
 
     public async Task FetchCoins()
     {
-        int pageNum = pagesFetched;
-        pagesFetched++;
-        List<Coin> fetchedCoins = await Http.GetFromJsonAsync<List<Coin>>
-            ($"{COINGECKO_COINS}&page={pageNum}&sparkline=false");
-        coinList.AddRange(fetchedCoins);
+        if (DateTime.Now - lastFetch > new TimeSpan(0, 0, 1) || firstFetch == true)
+        {
+            Console.WriteLine(DateTime.Now - lastFetch);
+            int pageNum = pagesFetched;
+            pagesFetched++;
+            List<Coin> fetchedCoins = await Http.GetFromJsonAsync<List<Coin>>
+                ($"{COINGECKO_COINS}&page={pageNum}&sparkline=false");
+            coinList.AddRange(fetchedCoins);
+            lastFetch = DateTime.Now;
+            firstFetch = false;
+        }
+    }
+
+    public async Task<bool> AddToWatchlist()
+    {
+        Console.WriteLine("ok");
+        return true;
     }
 }
