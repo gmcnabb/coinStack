@@ -31,20 +31,34 @@
 
     [CascadingParameter] private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private async Task GetLiveData()
+    protected override async Task OnInitializedAsync()
+    {
+        await GetLiveData();
+    }
+
+    private async Task<AuthenticationState> GetLiveData()
     {
         var authState = await authenticationStateTask;
-        var user = authState.User;
-
-        if (user.Identity.IsAuthenticated)
+        if (authState.User.Identity != null)
         {
-            Console.WriteLine($"User {user.Identity.Name} is authed");
+            var user = authState.User;
+
+            if (user.Identity.IsAuthenticated)
+            {
+                Console.WriteLine($"User {user.Identity.Name} is authed");
+                return authState;
+            }
+            else
+            {
+                Console.WriteLine("user not authed");
+                return authState;
+            }
         }
         else
         {
             Console.WriteLine("user not authed");
+            return authState;
         }
-
     }
 
 }
