@@ -45,25 +45,22 @@ namespace coinStackAPI
 
         [FunctionName("ReadWatchlist")]
         public static async Task<IActionResult> ReadWatchlist(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "ReadWatchlist/{partitionKey}/")] HttpRequest req,
-            [CosmosDB(
-                databaseName: "coinstackdb1",
-                collectionName: "watchlists",
-                PartitionKey = "{partitionKey}",
-                ConnectionStringSetting = "DB_READ_CONNECTION")] IEnumerable<WatchlistEntry> WatchlistEntries,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "readwatchlist/{partitionKey}/{id}")] HttpRequest req,
+            [CosmosDB("coinstackdb1", "watchlists",
+                PartitionKey = "{partitionKey}", Id = "{id}",
+                ConnectionStringSetting = "DB_READ_CONNECTION")] WatchlistEntry watchlist,
+                ILogger log)
         {
             log.LogInformation("attempting to read from watchlists");
             try
             {
-                ClientPrincipal principal = SimpleAuth.Parse(req);
-                if (principal.UserId != null)
+                if (watchlist != null)
                 {
-                    return new OkObjectResult(WatchlistEntries.Where(w => w.userId == principal.UserId));
+                    return new OkObjectResult(watchlist);
                 }
                 else
                 {
-                    return new OkObjectResult("No watchlist found for this user. Are you logged in?");
+                    return new OkObjectResult("No watchlist found for this userId");
                 }
             }
             catch (Exception ex)
@@ -78,9 +75,9 @@ namespace coinStackAPI
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "WriteToWatchlist")] HttpRequest req,
             [CosmosDB(
                 databaseName: "coinstackdb1",
-                collectionName: "watchlists",
+                collectionName: "watchlists", Id = "id",
                 ConnectionStringSetting = "DB_READ_WRITE_CONNECTION")] IAsyncCollector<WatchlistEntry> WatchlistEntries,
-            ILogger log)
+                ILogger log)
         {
             try
             {
@@ -96,17 +93,20 @@ namespace coinStackAPI
                 log.LogError($"Couldn't insert item. Exception thrown: {ex.Message}");
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
+
         }
 
         public class WatchlistEntry
         {
-            public WatchlistEntry(string[] coinIds, string id)
+            public WatchlistEntry(string[] coinIds, string userId, string postId)
             {
                 this.values = coinIds;
-                this.userId = id;
+                this.userId = userId;
+                this.id = postId;
             }
             public string[] values { get; set; }
             public string userId { get; set; }
+            public string id { get; set; }
         }
 
         public static class SimpleAuth
