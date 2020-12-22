@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Linq;
+using static coinStackAPI.Function1.SimpleAuth;
 
 namespace coinStackAPI
 {
@@ -42,49 +43,28 @@ namespace coinStackAPI
             return new OkObjectResult(responseMessage);
         }
 
-        //[FunctionName("ReadFromDB")]
-        //public static IActionResult Read(
-        //    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "read/{partitionKey}/{entry}")]
-        //    HttpRequest req, [CosmosDB(
-        //                        databaseName: "coinstackdb1",
-        //                        collectionName: "portfolios",
-        //                        ConnectionStringSetting = "DB_READ_CONNECTION",
-        //                        Id = "{entry}",
-        //                        PartitionKey = "{partitionKey}")] PortfolioEntry valueOne, ILogger log)
-        //{
-        //    log.LogInformation("attempting read from DB");
-
-        //    if (valueOne == null)
-        //    {
-        //        log.LogInformation("not found");
-        //    }
-        //    else
-        //    {
-        //        log.LogInformation($"found item, description: {valueOne.value}");
-        //    }
-
-        //    string responseMessage = valueOne.values ?? "fail";
-        //    return new OkObjectResult(responseMessage);
-
-        //}
-
-        [FunctionName("WriteToWatchlist")]
-        public static async Task<IActionResult> WriteToWatchlist(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "WriteToWatchlist")] HttpRequest req,
+        [FunctionName("ReadWatchlist")]
+        public static async Task<IActionResult> ReadWatchlist(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "ReadWatchlist/{partitionKey}/")] HttpRequest req,
             [CosmosDB(
                 databaseName: "coinstackdb1",
                 collectionName: "watchlists",
-                ConnectionStringSetting = "DB_READ_WRITE_CONNECTION")] IAsyncCollector<PortfolioEntry> coinIds,
+                PartitionKey = "{partitionKey}",
+                ConnectionStringSetting = "DB_READ_CONNECTION")] IEnumerable<WatchlistEntry> WatchlistEntries,
             ILogger log)
         {
+            log.LogInformation("attempting to read from watchlists");
             try
             {
-                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-                PortfolioEntry entry = JsonConvert.DeserializeObject<PortfolioEntry>(requestBody);
-
-                await coinIds.AddAsync(entry);
-
-                return new OkObjectResult(entry);
+                ClientPrincipal principal = SimpleAuth.Parse(req);
+                if (principal.UserId != null)
+                {
+                    return new OkObjectResult(WatchlistEntries.Where(w => w.userId == principal.UserId));
+                }
+                else
+                {
+                    return new OkObjectResult("No watchlist found for this user. Are you logged in?");
+                }
             }
             catch (Exception ex)
             {
@@ -93,24 +73,67 @@ namespace coinStackAPI
             }
         }
 
-
-        //[FunctionName("Restricted")]N
-        //public static async Task<IActionResult> Restricted(
-        //    [HttpTrigger(AuthorizationLevel.Function, "get", Route = "authed")] HttpRequest req, ILogger log)
-        //{
-        //    string responseMessage = "you an MVP";
-        //    return new OkObjectResult(responseMessage);
-        //}
-
-        public class PortfolioEntry
+        [FunctionName("WriteToWatchlist")]
+        public static async Task<IActionResult> WriteToWatchlist(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "WriteToWatchlist")] HttpRequest req,
+            [CosmosDB(
+                databaseName: "coinstackdb1",
+                collectionName: "watchlists",
+                ConnectionStringSetting = "DB_READ_WRITE_CONNECTION")] IAsyncCollector<WatchlistEntry> WatchlistEntries,
+            ILogger log)
         {
-            public PortfolioEntry(string[] values, string id)
+            try
             {
-                this.values = values;
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                WatchlistEntry newEntry = JsonConvert.DeserializeObject<WatchlistEntry>(requestBody);
+
+                await WatchlistEntries.AddAsync(newEntry);
+
+                return new OkObjectResult(newEntry);
+            }
+            catch (Exception ex)
+            {
+                log.LogError($"Couldn't insert item. Exception thrown: {ex.Message}");
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        public class WatchlistEntry
+        {
+            public WatchlistEntry(string[] coinIds, string id)
+            {
+                this.values = coinIds;
                 this.userId = id;
             }
             public string[] values { get; set; }
             public string userId { get; set; }
+        }
+
+        public static class SimpleAuth
+        {
+            public class ClientPrincipal
+            {
+                public string IdentityProvider { get; set; }
+                public string UserId { get; set; }
+                public string UserDetails { get; set; }
+                public IEnumerable<string> UserRoles { get; set; }
+            }
+
+            public static ClientPrincipal Parse(HttpRequest req)
+            {
+                var principal = new ClientPrincipal();
+
+                if (req.Headers.TryGetValue("x-ms-client-principal", out var header))
+                {
+                    var data = header[0];
+                    var decoded = Convert.FromBase64String(data);
+                    var json = Encoding.ASCII.GetString(decoded);
+                    principal = System.Text.Json.JsonSerializer.Deserialize<ClientPrincipal>
+                        (json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+
+                return principal;
+            }
         }
 
         public static class StaticWebAppsAuth
@@ -154,4 +177,37 @@ namespace coinStackAPI
         }
 
     }
+    //[FunctionName("Restricted")]N
+    //public static async Task<IActionResult> Restricted(
+    //    [HttpTrigger(AuthorizationLevel.Function, "get", Route = "authed")] HttpRequest req, ILogger log)
+    //{
+    //    string responseMessage = "you an MVP";
+    //    return new OkObjectResult(responseMessage);
+    //}
+
+    //[FunctionName("ReadFromDB")]
+    //public static IActionResult Read(
+    //    [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "read/{partitionKey}/{entry}")]
+    //    HttpRequest req, [CosmosDB(
+    //                        databaseName: "coinstackdb1",
+    //                        collectionName: "portfolios",
+    //                        ConnectionStringSetting = "DB_READ_CONNECTION",
+    //                        Id = "{entry}",
+    //                        PartitionKey = "{partitionKey}")] PortfolioEntry valueOne, ILogger log)
+    //{
+    //    log.LogInformation("attempting read from DB");
+
+    //    if (valueOne == null)
+    //    {
+    //        log.LogInformation("not found");
+    //    }
+    //    else
+    //    {
+    //        log.LogInformation($"found item, description: {valueOne.value}");
+    //    }
+
+    //    string responseMessage = valueOne.values ?? "fail";
+    //    return new OkObjectResult(responseMessage);
+
+    //}
 }
